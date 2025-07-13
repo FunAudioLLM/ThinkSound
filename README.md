@@ -139,6 +139,8 @@ python app.py
 * - [ ] Provide detailed documentation and API reference
 * - [ ] Add support for additional modalities and downstream tasks
 * - [ ] Release models at different scales
+* - [ ] Provide a ready-to-use environment image
+* - [ ] A beginner-friendly Windows quick-start README
 ---
 
 ## 📄 License
