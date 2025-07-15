@@ -180,7 +180,7 @@ This project is released under the Apache 2.0 License.
 > **Commercial use is NOT permitted.**
 > For commercial licensing, please contact the authors.
 
-### 📦 Third-Party Components
+**📦 Third-Party Components**
 
 * **Stable Audio Open VAE** (by Stability AI):
   This repository includes a fine-tuned VAE from [Stable Audio Open](https://huggingface.co/stabilityai/stable-audio-open-1.0/), licensed under the [Stability AI Community License](./third_party/LICENSE_StabilityAI.md).
