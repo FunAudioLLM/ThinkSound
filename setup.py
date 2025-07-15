@@ -16,12 +16,14 @@ setup(
         'einops-exts==0.0.4',
         'ema-pytorch==0.2.3',
         'encodec==0.1.1',
-        # 'gradio>=3.42.0',
+        'gradio==3.50.0',
+        'lightning==2.5.1.post0',
         'huggingface_hub',
         'importlib-resources==5.12.0',
         'k-diffusion==0.1.1',
         'laion-clap==1.1.4',
         'local-attention==1.8.6',
+        'opencv-python==4.11.0.86',
         'pandas==2.0.2',
         'pedalboard==0.7.4',
         'prefigure==0.0.9',
@@ -30,7 +32,7 @@ setup(
         'safetensors',
         'sentencepiece==0.1.99',
         's3fs',
-        'torch>=2.0.1',
+        'torch==2.6.0',
         'torchaudio>=2.0.2',
         'torchmetrics==0.11.4',
         'tqdm',
@@ -39,6 +41,6 @@ setup(
         'vector-quantize-pytorch==1.9.14',
         'wandb==0.15.4',
         'webdataset==0.2.48',
-        'x-transformers<1.27.0'
+        'x-transformers==1.26.6'
     ],
 )
