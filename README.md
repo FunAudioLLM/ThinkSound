@@ -197,7 +197,7 @@ Many thanks to:
 * **stable-audio-tools** (by Stability AI):
 For providing an easy-to-use framework for audio generation, as well as the VAE module and weights.
 * **MMAudio**:
-  For the MM-DiT backbone used in our multi-modal design.
+  For the implementation of the MM-DiT backbone in the audio domain.
 
 ---
 
