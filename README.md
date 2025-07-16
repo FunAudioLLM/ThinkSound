@@ -161,15 +161,16 @@ python app.py
 
 ---
 
-## 📝 TODO
-* - [ ] Release training scripts for ThinkSound models
-* - [ ] Open-source AudioCoT dataset and automated pipeline
-* - [ ] Provide detailed documentation and API reference
-* - [ ] Add support for additional modalities and downstream tasks
-* - [ ] Release models at different scales
-* - [ ] Provide a ready-to-use environment image
+## 📝 TODO & Future Plans
+* - [ ] Release training scripts for ThinkSound models (Expected before 07/20/2025)
+* - [ ] Open-source AudioCoT dataset and automated pipeline (Expected before 07/23/2025)
+* - [ ] Provide a ready-to-use environment image (Expected before 07/23/2025)
+* - [ ] Release a more powerful foundation model covering multiple domains to provide more engaging and immersive foley creation (Expected by end of August 2025)
+* - [ ] Add support for additional modalities and downstream tasks (Expected before end of July 2025)
+* - [ ] Release models at different scales (Expected before end of July 2025)
 * - [x] A beginner-friendly Windows quick-start README
 ---
+
 
 ## 📄 License
 
