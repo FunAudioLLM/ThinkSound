@@ -87,6 +87,7 @@ class VGGSound(Dataset):
         save_dir: str = 'data/vggsound/video_latents_text/train'
     ):
         self.root = Path(root)
+        self.caption_cot = []
         self.normalize_audio = normalize_audio
         if audio_samples is None:
             self.audio_samples = int(sample_rate * duration_sec)
@@ -113,11 +114,13 @@ class VGGSound(Dataset):
         for record in df_list:
             id = record['id']
             if os.path.exists(f'{save_dir}/{id}.pth'): continue
-            label = record['label']
+            label = record['caption']
+            caption_cot = record['caption_cot']
             # if id in videos:
             self.labels.append(label)
             # self.labels[id] = label
             self.videos.append(id)
+            self.caption_cot.append(caption_cot)
             # else:
             #     missing_videos.append(id)
 
@@ -152,6 +155,7 @@ class VGGSound(Dataset):
     def sample(self, idx: int) -> dict[str, torch.Tensor]:
         video_id = self.videos[idx]
         label = self.labels[idx]
+        caption_cot = self.caption_cot[idx]
 
         reader = StreamingMediaDecoder(self.root / (video_id + '.mp4'))
         reader.add_basic_video_stream(
@@ -289,6 +293,7 @@ class VGGSound(Dataset):
         data = {
             'id': video_id,
             'caption': label,
+            'caption_cot': caption_cot,
             'audio': audio_chunk,
             'clip_video': clip_chunk,
             'sync_video': sync_chunk,

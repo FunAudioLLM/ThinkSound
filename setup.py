@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='thinksound',
-    version='0.0.16',
+    version='0.0.19',
     url='https://github.com/liuhuadai/thinksound.git',
     author='liuhuadai',
     description='a unified Any2Audio generation framework guided by Chain-of-Thought (CoT) reasoning',
@@ -24,6 +24,7 @@ setup(
         'laion-clap==1.1.4',
         'local-attention==1.8.6',
         'opencv-python==4.11.0.86',
+        'open_clip_torch==2.32.0',
         'pandas==2.0.2',
         'pedalboard==0.7.4',
         'prefigure==0.0.9',
@@ -32,6 +33,7 @@ setup(
         'safetensors',
         'sentencepiece==0.1.99',
         's3fs',
+        'omegaconf',
         'torch==2.6.0',
         'torchaudio>=2.0.2',
         'torchmetrics==0.11.4',

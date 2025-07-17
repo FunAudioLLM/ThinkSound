@@ -8,7 +8,7 @@ def load_ckpt_state_dict(ckpt_path, prefix=None):
     if ckpt_path.endswith(".safetensors"):
         state_dict = load_file(ckpt_path)
     else:
-        state_dict = torch.load(ckpt_path, map_location="cpu")["state_dict"]
+        state_dict = torch.load(ckpt_path, map_location="cpu",weights_only=False)["state_dict"]
 
     # 过滤特定前缀的state_dict
     filtered_state_dict = {k.replace(f'{prefix}',''): v for k, v in state_dict.items() if k.startswith(prefix)} if prefix is not None else state_dict

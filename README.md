@@ -44,6 +44,7 @@ PyTorch implementation for multimodal audio generation and editing: generate or 
 ---
 
 ## 📰 News
+- **2025.07.17** &nbsp; 🧠 Finetuning enabled: training and finetuning code is now publicly available, along with clear usage instructions to help you customize and extend ThinkSound with your own data.
 - **2025.07.15** &nbsp; 📦 Simplified installation and usability: dependencies on PyPI for easy cross-platform setup; Windows `.bat` scripts automate environment creation and script running.
 - **2025.07.08** &nbsp;  🔧 Major update: model lightweighted and optimized memory and GPU usage, now supports high-throughput audio generation at scale!
 - **2025.07.01** &nbsp; 🔥Online demo on [Hugging Face Spaces](https://huggingface.co/spaces/FunAudioLLM/ThinkSound) and [ModelScope](https://modelscope.cn/studios/iic/ThinkSound) for interactive experience!
@@ -159,15 +160,20 @@ For an interactive experience, launch the Gradio web interface:
 python app.py
 ```
 
+
+## 🏋️ Train the Model
+
+See [`Training.md`](docs/Training.md)
+
+
 ---
 
 ## 📝 TODO & Future Plans
-* - [ ] Release training scripts for ThinkSound models (Expected before 07/20/2025)
 * - [ ] Open-source AudioCoT dataset and automated pipeline (Expected before 07/23/2025)
-* - [ ] Provide a ready-to-use environment image (Expected before 07/23/2025)
 * - [ ] Release a more powerful foundation model covering multiple domains to provide more engaging and immersive foley creation (Expected by end of August 2025)
 * - [ ] Add support for additional modalities and downstream tasks (Expected before end of July 2025)
 * - [ ] Release models at different scales (Expected before end of July 2025)
+* - [x] Release training scripts for ThinkSound models
 * - [x] A beginner-friendly Windows quick-start README
 ---
 

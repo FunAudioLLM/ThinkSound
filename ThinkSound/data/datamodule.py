@@ -88,8 +88,10 @@ class DataModule(L.LightningDataModule):
             self.video_configs = []
             audio_dir_configs = dataset_config.get("audio_datasets", None)
             video_dir_configs = dataset_config.get("video_datasets", None)
-            assert audio_dir_configs is not None and video_dir_configs is not None, "Directory configuration must be specified in video_datasets and audio_datasets"
+            #assert audio_dir_configs is not None and video_dir_configs is not None, "Directory configuration must be specified in video_datasets and audio_datasets"
             for i, dataset in enumerate((audio_dir_configs, video_dir_configs, val_dir_configs, test_dir_configs)):
+                if dataset is None:
+                    continue
                 for config in dataset:
                     data_dir_path = config.get("path", None)
                     audio_dir_path = config.get("audio_dir", None)

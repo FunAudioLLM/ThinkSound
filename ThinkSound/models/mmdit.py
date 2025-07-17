@@ -340,6 +340,7 @@ class MMmodule(nn.Module):
         latent = self.audio_input_proj(latent)  # (B, N, D)
         global_c = self.global_cond_mlp(clip_f_c + text_f_c)  # (B, D)
         # global_c = text_f_c
+        #print(f"[DEBUG] t_emb.shape = {self.t_embed(t).shape}, global_c.shape = {global_c.shape}")
         global_c = self.t_embed(t).unsqueeze(1) + global_c.unsqueeze(1)  # (B, D)
         extended_c = global_c + sync_f
 
