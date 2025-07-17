@@ -52,7 +52,7 @@ def main(args):
     dataloader = DataLoader(
         dataset,
         batch_size=2,
-        num_workers=2,
+        # num_workers=2,
         pin_memory=False,
         drop_last=False,
         collate_fn=error_avoidance_collate

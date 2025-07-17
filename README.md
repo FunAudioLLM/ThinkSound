@@ -102,6 +102,72 @@ git clone https://huggingface.co/liuhuadai/ThinkSound ckpts
 
 ### ▶️ Run the Demo
 
+#### **Docker for WSL/Ubuntu
+
+Use to run this with own workspace that already clone this repo + models
+
+Prerequisite
+
+1. Download all required models. Warning. It is large
+
+```bash
+
+sudo apt install git-lfs
+
+git clone https://huggingface.co/facebook/metaclip-h14-fullcc2.5b
+git clone https://huggingface.co/google/t5-v1_1-xl
+git clone https://huggingface.co/liuhuadai/ThinkSound ckpts
+```
+
+2. Move all the models to the root of this repository
+
+Pull ready docker image
+
+1. If your gpu support cuda 12.6.x, you can pull this image
+
+```bash
+docker pull sasuketaichou/sajenakcube:thinksound
+```
+
+Note: You can skip Build local step if you do this, go to Run docker step
+
+Build local
+
+Note: Please check your supported nvidia cuda version with your device. Change `FROM cuda-version-of-your-device` of Dockerfile
+
+1. Run at the root of this repository
+
+```bash
+docker build -t thinksound:latest .
+```
+
+Run docker
+
+1. Append your local ThinkSound workspace with the models that we just downloaded. (this is done in start_docker.sh)
+
+2. To attach ThinkSound folder via script
+
+```bash
+cd ..
+ls ## make sure ThinkSound folder is visible
+```
+
+3. Run the script
+
+If pull from ready docker image
+
+```bash
+docker run --gpus all -it -v $(pwd)/ThinkSound:/app --rm -p 7860:7860 --net=host sasuketaichou/sajenakcube:thinksound
+```
+
+If build local
+
+```bash
+docker run --gpus all -it -v $(pwd)/ThinkSound:/app --rm -p 7860:7860 --net=host thinksound:latest
+```
+
+Test via browser `localhost:7860`
+
 #### **Linux/macOS**
 
 ```bash
