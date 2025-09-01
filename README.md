@@ -44,6 +44,7 @@ PyTorch implementation for multimodal audio generation and editing: generate or 
 ---
 
 ## 📰 News
+- **2025.09.01** &nbsp; 🔥 Our AudioCoT dataset is now open-sourced and available on [Hugging Face](https://huggingface.co/datasets/liuhuadai/AudioCoT)!
 - **2025.07.17** &nbsp; 🧠 Finetuning enabled: training and finetuning code is now publicly available, along with clear usage instructions to help you customize and extend ThinkSound with your own data.
 - **2025.07.15** &nbsp; 📦 Simplified installation and usability: dependencies on PyPI for easy cross-platform setup; Windows `.bat` scripts automate environment creation and script running.
 - **2025.07.08** &nbsp;  🔧 Major update: model lightweighted and optimized memory and GPU usage, now supports high-throughput audio generation at scale!
@@ -169,10 +170,10 @@ See [`Training.md`](docs/Training.md)
 ---
 
 ## 📝 TODO & Future Plans
-* - [ ] Open-source AudioCoT dataset and automated pipeline (Expected before 07/23/2025)
-* - [ ] Release a more powerful foundation model covering multiple domains to provide more engaging and immersive foley creation (Expected by end of August 2025)
-* - [ ] Add support for additional modalities and downstream tasks (Expected before end of July 2025)
-* - [ ] Release models at different scales (Expected before end of July 2025)
+* - [ ] Release a more powerful foundation model covering multiple domains to provide more engaging and immersive foley creation
+* - [ ] Add support for additional modalities and downstream tasks
+* - [ ] Release models at different scales
+* - [x] Open-source AudioCoT dataset and automated pipeline
 * - [x] Release training scripts for ThinkSound models
 * - [x] A beginner-friendly Windows quick-start README
 ---
@@ -227,5 +228,6 @@ If you find ThinkSound useful in your research or work, please cite our paper:
 ---
 
 ## 📬 Contact
+
 
 ✨ Feel free to [open an issue](https://github.com/liuhuadai/ThinkSound/issues) or contact us via email ([liuhuadai@zju.edu.cn](mailto:liuhuadai@zju.edu.cn)) if you have any questions or suggestions!
