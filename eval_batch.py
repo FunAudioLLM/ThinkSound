@@ -9,10 +9,10 @@ import random
 from datetime import datetime
 import numpy as np
 
-from ThinkSound.data.datamodule import DataModule
-from ThinkSound.models import create_model_from_config
-from ThinkSound.models.utils import load_ckpt_state_dict, remove_weight_norm_from_model
-from ThinkSound.inference.sampling import sample, sample_discrete_euler
+from PrismAudio.data.datamodule import DataModule
+from PrismAudio.models import create_model_from_config
+from PrismAudio.models.utils import load_ckpt_state_dict, remove_weight_norm_from_model
+from PrismAudio.inference.sampling import sample, sample_discrete_euler
 from pathlib import Path
 from tqdm import tqdm
 
@@ -68,7 +68,7 @@ def main():
 
     # Load config
     if args.model_config == '':
-        args.model_config = "ThinkSound/configs/model_configs/thinksound.json"
+        args.model_config = "PrismAudio/configs/model_configs/thinksound.json"
     with open(args.model_config) as f:
         model_config = json.load(f)
 
@@ -91,7 +91,7 @@ def main():
 
 
     if args.dataset_config == '':
-        args.dataset_config = "ThinkSound/configs/multimodal_dataset_demo.json"
+        args.dataset_config = "PrismAudio/configs/multimodal_dataset_demo.json"
     with open(args.dataset_config) as f:
         dataset_config = json.load(f)
         

@@ -8,9 +8,9 @@ from lightning.pytorch import seed_everything
 import random
 from datetime import datetime
 import numpy as np
-from ThinkSound.models import create_model_from_config
-from ThinkSound.models.utils import load_ckpt_state_dict, remove_weight_norm_from_model
-from ThinkSound.inference.sampling import sample, sample_discrete_euler
+from PrismAudio.models import create_model_from_config
+from PrismAudio.models.utils import load_ckpt_state_dict, remove_weight_norm_from_model
+from PrismAudio.inference.sampling import sample, sample_discrete_euler
 from pathlib import Path
 
 
@@ -26,8 +26,12 @@ def predict_step(diffusion, batch, diffusion_objective, device='cuda:0'):
         conditioning = diffusion.conditioner(metadata, device)
     
     video_exist = torch.stack([item['video_exist'] for item in metadata],dim=0)
-    conditioning['metaclip_features'][~video_exist] = diffusion.model.model.empty_clip_feat
-    conditioning['sync_features'][~video_exist] = diffusion.model.model.empty_sync_feat
+    if 'metaclip_features' in conditioning:
+        conditioning['metaclip_features'][~video_exist] = diffusion.model.model.empty_clip_feat
+
+    if 'sync_features' in conditioning:
+        conditioning['sync_features'][~video_exist] = diffusion.model.model.empty_sync_feat
+
 
     cond_inputs = diffusion.get_conditioning_inputs(conditioning)
     if batch_size > 1:
@@ -77,12 +81,12 @@ def load_file(filename, info, latent_length):
     info['video_exist'] = torch.tensor(True)
     # except:
     #     print(f'error load file: {filename}')
-    return audio, info['metaclip_features']
+    return audio, info
 
 def load(filename,duration):
     assert os.path.exists(filename)
     info = {}
-    audio, video = load_file(filename, info, round(44100/64/32*duration))
+    audio, info = load_file(filename, info, round(44100/64/32*duration))
     info["path"] = filename
 
     info['id'] = Path(filename).stem
@@ -110,7 +114,7 @@ def main():
 
     #Get JSON config from args.model_config
     if args.model_config == '':
-        args.model_config = "ThinkSound/configs/model_configs/thinksound.json"
+        args.model_config = "PrismAudio/configs/model_configs/thinksound.json"
     with open(args.model_config) as f:
         model_config = json.load(f)
 
@@ -118,9 +122,15 @@ def main():
     duration=(float)(args.duration_sec)
     
     model_config["sample_size"] = duration * model_config["sample_rate"]
-    model_config["model"]["diffusion"]["config"]["sync_seq_len"] = 24*int(duration)
-    model_config["model"]["diffusion"]["config"]["clip_seq_len"] = 8*int(duration)
-    model_config["model"]["diffusion"]["config"]["latent_seq_len"] = round(44100/64/32*duration)
+    if "sync_seq_len" in model_config["model"]["diffusion"]["config"]:
+        model_config["model"]["diffusion"]["config"]["sync_seq_len"] = 24 * int(duration)
+
+    if "clip_seq_len" in model_config["model"]["diffusion"]["config"]:
+        model_config["model"]["diffusion"]["config"]["clip_seq_len"] = 8 * int(duration)
+
+    if "latent_seq_len" in model_config["model"]["diffusion"]["config"]:
+        model_config["model"]["diffusion"]["config"]["latent_seq_len"] = round(44100 / 64 / 32 * duration)
+
 
     model = create_model_from_config(model_config)
 

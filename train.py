@@ -11,12 +11,12 @@ from lightning.pytorch.tuner import Tuner
 from lightning.pytorch import seed_everything
 import random
 from datetime import datetime
-# from ThinkSound.data.dataset import create_dataloader_from_config
-from ThinkSound.data.datamodule import DataModule
-from ThinkSound.models import create_model_from_config
-from ThinkSound.models.utils import load_ckpt_state_dict, remove_weight_norm_from_model
-from ThinkSound.training import create_training_wrapper_from_config, create_demo_callback_from_config
-from ThinkSound.training.utils import copy_state_dict
+# from PrismAudio.data.dataset import create_dataloader_from_config
+from PrismAudio.data.datamodule import DataModule
+from PrismAudio.models import create_model_from_config
+from PrismAudio.models.utils import load_ckpt_state_dict, remove_weight_norm_from_model
+from PrismAudio.training import create_training_wrapper_from_config, create_demo_callback_from_config
+from PrismAudio.training.utils import copy_state_dict
 
 class ExceptionCallback(Callback):
     def on_exception(self, trainer, module, err):
