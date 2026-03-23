@@ -1,0 +1,27 @@
+{
+    "dataset_type": "video_dataset",
+    "datasets": [
+        {
+            "id": "vggsound",
+            "path": "data/train",
+            "split_path": "split/train.txt"
+        }
+    ],
+    "val_datasets": [
+        {
+            "id": "vggsound",
+            "path": "data/test",
+            "split_path": "split/test.txt"
+        }
+    ],
+    "test_datasets": [
+        {
+            "id": "vggsound",
+            "path": "data/test",
+            "split_path": "split/test.txt"
+        }
+    ],
+    "random_crop": false,
+    "input_type": "video",
+    "fps": 8
+}

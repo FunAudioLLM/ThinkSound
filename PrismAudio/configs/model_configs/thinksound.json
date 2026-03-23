@@ -1,0 +1,147 @@
+{
+    "model_type": "mm_diffusion_cond",
+    "sample_size": 397312,
+    "sample_rate": 44100,
+    "audio_channels": 2,
+    "model": {
+        "pretransform": {
+            "type": "autoencoder",
+            "iterate_batch": true,
+            "config": {
+                "encoder": {
+                    "type": "oobleck",
+                    "config": {
+                        "in_channels": 2,
+                        "channels": 128,
+                        "c_mults": [1, 2, 4, 8, 16],
+                        "strides": [2, 4, 4, 8, 8],
+                        "latent_dim": 128,
+                        "use_snake": true
+                    }
+                },
+                "decoder": {
+                    "type": "oobleck",
+                    "config": {
+                        "out_channels": 2,
+                        "channels": 128,
+                        "c_mults": [1, 2, 4, 8, 16],
+                        "strides": [2, 4, 4, 8, 8],
+                        "latent_dim": 64,
+                        "use_snake": true,
+                        "final_tanh": false
+                    }
+                },
+                "bottleneck": {
+                    "type": "vae"
+                },
+                "latent_dim": 64,
+                "downsampling_ratio": 2048,
+                "io_channels": 2
+            }
+        },
+        "conditioning": {
+            "configs": [
+                {
+                    "id": "metaclip_features",
+                    "type": "mm_unchang",
+                    "config": {
+                        "dim": 1024,
+                        "output_dim": 1024
+                        }
+                },
+                {
+                    "id": "metaclip_text_features",
+                    "type": "mm_unchang",
+                    "config": {
+                        "dim": 1024,
+                        "output_dim": 1024
+                    }
+                },
+                {
+                    "id": "sync_features",
+                    "type": "mm_unchang",
+                    "config": {
+                        "dim": 768,
+                        "output_dim": 768
+                    }
+                },
+                {
+                    "id": "t5_features",
+                    "type": "mm_unchang",
+                    "config": {
+                        "dim": 2048,
+                        "output_dim": 2048
+                    }
+                }
+            ],
+            "cond_dim": 768
+        },
+        "diffusion": {
+            "mm_cond_ids": ["metaclip_features", "sync_features", "metaclip_text_features","t5_features"],
+            "type": "mmdit",
+            "diffusion_objective": "rectified_flow",
+            "config": {
+                "latent_dim":64,
+                "clip_dim":1024,
+                "sync_dim":768,
+                "text_dim":2048,
+                "hidden_dim":1024,
+                "depth":21,
+                "fused_depth":14,
+                "num_heads":16,
+                "latent_seq_len":194,
+                "clip_seq_len":72,
+                "sync_seq_len":216,
+                "v2": true,
+                "kernel_size": 3
+            }
+        },
+        "io_channels": 64
+    },
+    "training": {
+        "use_ema": true,
+        "log_loss_info": false,
+        "cfg_dropout_prob": 0.2,
+        "pre_encoded": true,
+        "timestep_sampler": "logit_normal",
+        "optimizer_configs": {
+            "diffusion": {
+                "optimizer": {
+                    "type": "AdamW",
+                    "config": {
+                        "lr": 5e-5,
+                        "betas": [0.9, 0.95],
+                        "weight_decay": 1e-4,
+                        "eps": 1e-6
+                    }
+                },
+                "scheduler": {
+                    "type": "InverseLR",
+                    "config": {
+                        "inv_gamma": 1000000,
+                        "power": 0.5,
+                        "warmup": 0.99
+                    }
+                }
+            }
+        },
+        "demo": {
+            "demo_every": 5000,
+            "demo_steps": 24,
+            "num_demos": 10,
+            "demo_cond": [
+                "dataset/vggsound/video_latents_t5_clip_npz/test/0Cu33yBwAPg_000060.npz",
+                "dataset/vggsound/video_latents_t5_clip_npz/test/bmKtI808DsU_000009.npz",
+                "dataset/vggsound/video_latents_t5_clip_npz/test/VC0c22cJTbM_000424.npz",
+                "dataset/vggsound/video_latents_t5_clip_npz/test/F3gsbUTdc2U_000090.npz",
+                "dataset/vggsound/video_latents_t5_clip_npz/test/WatvT8A8iug_000100.npz",
+                "dataset/vggsound/video_latents_t5_clip_npz/test/0nvBTp-q7tU_000112.npz",
+                "dataset/vggsound/video_latents_t5_clip_npz/test/3-PFuDkTM48_000080.npz",
+                "dataset/vggsound/video_latents_t5_clip_npz/test/luSAuu-BoPs_000232.npz",
+                "dataset/vggsound/video_latents_t5_clip_npz/test/__8UJxW0aOQ_000002.npz",
+                "dataset/vggsound/video_latents_t5_clip_npz/test/_0m_YMpQayA_000168.npz"
+            ],
+            "demo_cfg_scales": [5]
+        }
+    }
+}

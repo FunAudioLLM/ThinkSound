@@ -1,0 +1,52 @@
+{
+    "dataset_type": "multimodal_dir",
+    "video_datasets": [
+        {
+            "id": "vggsound",
+            "path": "dataset/vggsound/video_latents_t5_clip_npz/train",
+            "split_path": "dataset/vggsound/split_txt/train_cot.txt"
+        }
+    ],
+    "audio_datasets": [
+        {
+            "id": "audiostock",
+            "path": "dataset/Laion-Audio-630k/audiostock_latents_npz",
+            "split_path": "dataset/Laion-Audio-630k/split_txt/cot_audiostock_1.txt"
+        },
+        {
+            "id": "freesound_no_overlap",
+            "path": "dataset/Laion-Audio-630k/freesound_no_overlap_latents_npz",
+            "split_path": "dataset/Laion-Audio-630k/split_txt/cot_freesound.txt"
+        },
+        {
+            "id": "audioset_sl",
+            "path": "dataset/wavcaps/audioset_sl_latents_npz",
+            "split_path": "dataset/wavcaps/split_txt/cot_audio_sl_1.txt"
+        },
+        {
+            "id": "audiocaps",
+            "path": "dataset/1_audiocaps/audiocaps_latents_npz",
+            "split_path": "dataset/1_audiocaps/split_txt/train_cot.txt"
+        },
+        {
+            "id": "bbc",
+            "path": "dataset/Laion-Audio-630k/bbc_latents_npz",
+            "split_path": "dataset/Laion-Audio-630k/split_txt/cot_bbc_1.txt"
+        }
+    ],
+    "val_datasets": [
+        {
+            "id": "vggsound",
+            "path": "dataset/vggsound/video_latents_t5_clip_npz/test",
+            "split_path": "dataset/vggsound/split_txt/test_cot.txt"
+        }
+    ],
+    "test_datasets": [
+        {
+            "id": "vggsound",
+            "path": "cot_coarse"
+        }
+    ],
+    "random_crop": true,
+    "input_type": "prompt"
+}
