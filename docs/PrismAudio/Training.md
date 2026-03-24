@@ -34,12 +34,36 @@ The key parameters to modify are:
 
 Reward function weights can be adjusted under `reward_fn`:
 
-| Reward | Key | Default Weight | Description |
-|--------|-----|---------------|-------------|
-| **Temporal** | `synch_reward` | `0.6` | Audio-visual synchronization via Synchformer |
-| **Semantic** | `ms_clap` | `1.0` | Audio-text alignment via MS-CLAP |
-| **Spatial** | `itd_reward` | `0.4` | Inter-track distance reward using reference audio |
-| **Aesthetic** | `meta_reward` | `0.1` | Aesthetic quality via Meta Audiobox Aesthetics |
+| Reward Category | Key | Default Weight | Description |
+|:---|:---:|:---:|:---|
+| **Temporal** | synch_reward | 0.6 | Evaluates audio-visual synchronization via Synchformer. |
+| **Semantic** | ms_clap | 1.0 | Measures audio-text alignment accuracy via Microsoft CLAP. |
+| **Spatial** | itd_reward | 0.4 | Estimates spatial consistency (ITD) using StereoCRW. |
+| **Aesthetic** | meta_reward | 0.1 | Predicts perceptual audio quality via Meta Audiobox Aesthetics. |
+
+
+Depending on the rewards you intend to use, additional dependencies or submodules may be required. Please follow the instructions below:
+
+### 📝 Semantic Reward
+The Microsoft CLAP reward can be used directly.
+
+### ✨ Aesthetic Reward
+To enable aesthetic scoring, install the required package without its heavy dependencies:
+
+pip install audiobox_aesthetics --no-deps
+
+### ⏳ Temporal Reward
+Required for synch_reward. Navigate to your project root and clone the Synchformer repository:
+
+git clone https://github.com/v-iashin/Synchformer.git
+
+### 🌐 Spatial Reward
+Required for itd_reward. Navigate to your project root and clone the StereoCRW repository:
+
+git clone https://github.com/IFICL/stereocrw.git
+
+> Note: Ensure these repositories are cloned into the project root. The reward manager utilizes dynamic path injection and module cache clearing to resolve potential namespace conflicts between different submodules.
+
 
 GRPO-specific parameters:
 
