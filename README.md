@@ -58,7 +58,7 @@ PyTorch implementation for multimodal audio generation and editing: generate or 
 ---
 
 ## 📰 News
-- **2026.03.24** &nbsp; 🔥 **PrismAudio** (sequel to ThinkSound, different project name) is released in the same repo on branch [`prismaudio`](https://github.com/liuhuadai/ThinkSound/tree/prismaudio) — see **`README.md`** there for setup and models.
+- **2026.03.24** &nbsp; 🔥 **PrismAudio** is released in the same repo on branch [`prismaudio`](https://github.com/liuhuadai/ThinkSound/tree/prismaudio) — see **`README.md`** there for setup and models.
 - **2026.01.26** &nbsp; 🎉 PrismAudio accepted to **ICLR 2026 Main Conference** (code/docs on `prismaudio`).
 - **2025.11.25** &nbsp; 🔥 [Online PrismAudio Demo](http://prismaudio-project.github.io/) is live.
 - **2025.11.25** &nbsp; 🔥 [PrismAudio paper](https://arxiv.org/pdf/2511.18833) on arXiv — multi-dimensional CoT-RL for video-to-audio.
