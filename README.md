@@ -11,8 +11,8 @@
   
 </p>
 <p align="center">
-  <img src="https://img.shields.io/badge/NeurIPS 2025-Main Conference-blue.svg" alt="NeurIPS 2025"/>
-<p align="center">
+  <img src="https://img.shields.io/badge/NeurIPS%202025-Main%20Conference-blue.svg" alt="NeurIPS 2025"/>
+  &nbsp;
   <a href="https://arxiv.org/pdf/2506.21448">
     <img src="https://img.shields.io/badge/arXiv-2506.21448-b31b1b.svg" alt="arXiv"/>
   </a>
@@ -37,6 +37,19 @@
 
 ---
 
+## Repository layout
+
+This **ThinkSound** GitHub repository hosts two related projects on separate branches:
+
+| Branch | Project | Documentation |
+|--------|---------|----------------|
+| **`master`** | **ThinkSound** (NeurIPS 2025) — unified Any2Audio generation with CoT-guided flow matching | This file: **`README.md`** |
+| **`prismaudio`** | **PrismAudio** — follow-up work (ICLR 2026) on video-to-audio with multi-dimensional CoT-RL | **`README.md`** on the [`prismaudio`](https://github.com/liuhuadai/ThinkSound/tree/prismaudio) branch |
+
+For **ThinkSound**, use branch **`master`** (this README). For **PrismAudio**, check out **`prismaudio`** and follow **`README.md`** there.
+
+---
+
 **ThinkSound** is a unified Any2Audio generation framework with flow matching guided by Chain-of-Thought (CoT) reasoning.
 
 PyTorch implementation for multimodal audio generation and editing: generate or edit audio from video, text, and audio, powered by step-by-step reasoning from Multimodal Large Language Models (MLLMs).
@@ -45,10 +58,11 @@ PyTorch implementation for multimodal audio generation and editing: generate or 
 ---
 
 ## 📰 News
-- **2026.01.26** &nbsp; 🎉 PrismAudio has been accepted to the **ICLR 2026 Main Conference**! We plan to release the project in February 2026.
-- **2025.11.25** &nbsp; 🔥[Online PrismAudio Demo](http://prismaudio-project.github.io/) is live - try it now!
-- **2025.11.25** &nbsp; 🔥[PrismAudio paper](https://arxiv.org/pdf/2511.18833) released on arXiv, the first multi-dimensional CoT-RL framework for Video-to-Audio Generation!
-- **2025.09.19** &nbsp; 🎉 ThinkSound has been accepted to the **NeurIPS 2025 Main Conference**!
+- **2026.03.24** &nbsp; 🔥 **PrismAudio** (sequel to ThinkSound, different project name) is released in the same repo on branch [`prismaudio`](https://github.com/liuhuadai/ThinkSound/tree/prismaudio) — see **`README.md`** there for setup and models.
+- **2026.01.26** &nbsp; 🎉 PrismAudio accepted to **ICLR 2026 Main Conference** (code/docs on `prismaudio`).
+- **2025.11.25** &nbsp; 🔥 [Online PrismAudio Demo](http://prismaudio-project.github.io/) is live.
+- **2025.11.25** &nbsp; 🔥 [PrismAudio paper](https://arxiv.org/pdf/2511.18833) on arXiv — multi-dimensional CoT-RL for video-to-audio.
+- **2025.09.19** &nbsp; 🎉 **ThinkSound** accepted to the **NeurIPS 2025 Main Conference**!
 - **2025.09.01** &nbsp; Our AudioCoT dataset is now open-sourced and available on [Hugging Face](https://huggingface.co/datasets/liuhuadai/AudioCoT)!
 - **2025.07.17** &nbsp; 🧠 Finetuning enabled: training and finetuning code is now publicly available, along with clear usage instructions to help you customize and extend ThinkSound with your own data.
 - **2025.07.15** &nbsp; 📦 Simplified installation and usability: dependencies on PyPI for easy cross-platform setup; Windows `.bat` scripts automate environment creation and script running.
@@ -57,6 +71,19 @@ PyTorch implementation for multimodal audio generation and editing: generate or 
 - **2025.07.01** &nbsp; Released inference scripts and web interface; 
 - **2025.06** &nbsp; [ThinkSound paper](https://arxiv.org/pdf/2506.21448) released on arXiv!
 - **2025.06** &nbsp; [Online Demo](http://thinksound-project.github.io/) is live - try it now!
+
+---
+
+
+<div align="center">
+
+### Follow-up: PrismAudio (same repo, `prismaudio` branch)
+
+**PrismAudio** is the successor to ThinkSound (ICLR 2026), developed under a new name but kept in this repository on branch **`prismaudio`**. Installation, checkpoints, and citation are in **[`README.md` on that branch](https://github.com/liuhuadai/ThinkSound/blob/prismaudio/README.md)**.
+
+👉 [`git checkout prismaudio`](https://github.com/liuhuadai/ThinkSound/tree/prismaudio) or open the branch on GitHub.
+
+</div>
 
 ---
 
@@ -89,7 +116,8 @@ ThinkSound decomposes audio generation and editing into three interactive stages
 
 **Environment Preparation:**
 ```bash
-git clone https://github.com/liuhuadai/ThinkSound.git
+# ThinkSound code: branch master. PrismAudio: clone with -b prismaudio (see README.md on that branch).
+git clone -b master https://github.com/liuhuadai/ThinkSound.git
 cd ThinkSound
 conda create -n thinksound python=3.10
 conda activate thinksound
@@ -174,15 +202,6 @@ See [`Training.md`](docs/Training.md)
 
 ---
 
-## 📝 TODO & Future Plans
-* - [ ] Release a more powerful foundation model covering multiple domains to provide more engaging and immersive foley creation
-* - [ ] Add support for additional modalities and downstream tasks
-* - [ ] Release models at different scales
-* - [x] Open-source AudioCoT dataset and automated pipeline
-* - [x] Release training scripts for ThinkSound models
-* - [x] A beginner-friendly Windows quick-start README
----
-
 
 ## 📄 License
 
@@ -216,7 +235,7 @@ For providing an easy-to-use framework for audio generation, as well as the VAE 
 
 ## 📖 Citation
 
-If you find ThinkSound useful in your research or work, please cite our paper:
+If you find our project useful in your research or work, please cite our paper:
 
 ```bibtex
 @misc{liu2025thinksoundchainofthoughtreasoningmultimodal,
@@ -228,6 +247,15 @@ If you find ThinkSound useful in your research or work, please cite our paper:
       primaryClass={eess.AS},
       url={https://arxiv.org/abs/2506.21448}, 
 }
+@misc{liu2025prismaudiodecomposedchainofthoughtsmultidimensional,
+          title={PrismAudio: Decomposed Chain-of-Thoughts and Multi-dimensional Rewards for Video-to-Audio Generation}, 
+          author={Huadai Liu and Kaicheng Luo and Wen Wang and Qian Chen and Peiwen Sun and Rongjie Huang and Xiangang Li and Jieping Ye and Wei Xue},
+          year={2025},
+          eprint={2511.18833},
+          archivePrefix={arXiv},
+          primaryClass={cs.SD},
+          url={https://arxiv.org/abs/2511.18833}, 
+    }
 ```
 
 ---
