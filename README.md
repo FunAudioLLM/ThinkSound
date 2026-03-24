@@ -1,14 +1,5 @@
 <h1 align="center">PrismAudio</h1>
 
-<p align="center">
-  🌐
-  <a href="">English</a> |
-  <a href="">简体中文</a> |
-  <a href="">繁體中文</a> |
-  <a href="">Español</a> |
-  <a href="">Français</a> |
-  <a href="">日本語</a>
-</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/ICLR 2026-Main Conference-blue.svg" alt="ICLR 2026"/>
@@ -22,13 +13,22 @@
   <a href="http://prismaudio-project.github.io/">
     <img src="https://img.shields.io/badge/Online%20Demo-🌐-blue" alt="Online Demo"/>
   </a>
-
+  &nbsp;
+  <a href="https://huggingface.co/spaces/FunAudioLLM/PrismAudio">
+    <img src="https://img.shields.io/badge/HuggingFace-Spaces-orange?logo=huggingface" alt="Hugging Face"/>
+  </a>
+  &nbsp;
+  <a href="https://www.modelscope.cn/studios/iic/PrismAudio">
+    <img src="https://img.shields.io/badge/ModelScope-在线体验-green" alt="ModelScope"/>
+  </a>
 </p>
 
 <p align="center">
   If you find this project useful,<br>
   a star ⭐ on GitHub would be greatly appreciated!
 </p>
+
+
 
 ---
 
@@ -40,8 +40,7 @@
 ---
 
 ## 📰 News
-
-- **2026.03.22** &nbsp; 🔥 We have released **PrismAudio**, our next-generation video-to-audio generation model! For more details, please refer to the [`prismaudio`](https://github.com/liuhuadai/ThinkSound/tree/prismaudio) branch!
+- **2026.03.24** &nbsp; 🔥 We have released **PrismAudio**, our next-generation video-to-audio generation model! Model weights are available on [Hugging Face](https://huggingface.co/FunAudioLLM/PrismAudio) and [ModelScope](https://www.modelscope.cn/models/iic/PrismAudio). For more details, please refer to the [`prismaudio`](https://github.com/liuhuadai/ThinkSound/tree/prismaudio) branch!
 - **2026.01.26** &nbsp; 🎉 PrismAudio has been accepted to the **ICLR 2026 Main Conference**! We plan to release the project in February 2026.
 - **2025.11.25** &nbsp; 🔥 [Online PrismAudio Demo](http://prismaudio-project.github.io/) is live - try it now!
 - **2025.11.25** &nbsp; 🔥 [PrismAudio paper](https://arxiv.org/pdf/2511.18833) released on arXiv, the first multi-dimensional CoT-RL framework for Video-to-Audio Generation!
@@ -94,7 +93,7 @@ chmod +x scripts/PrismAudio/setup/build_env.sh
 # From Hugging Face: https://huggingface.co/liuhuadai/ThinkSound
 # From ModelScope:   https://www.modelscope.cn/models/iic/ThinkSound
 git lfs install
-git clone https://huggingface.co/liuhuadai/ThinkSound ckpts
+git clone https://huggingface.co/FunAudioLLM/PrismAudio ckpts
 ```
 
 ---
@@ -127,22 +126,28 @@ This project is released under the Apache 2.0 License.
 > **Commercial use is NOT permitted.**
 > For commercial licensing, please contact the authors.
 
-**📦 Third-Party Components**
+## 📦 Third-Party Components (Reward Models)
 
-- **Stable Audio Open VAE** (by Stability AI): Licensed under the [Stability AI Community License](./third_party/LICENSE_StabilityAI.md). **Commercial use and redistribution require prior permission from Stability AI.**
-- 📘 **All other code and models** are released under the Apache License 2.0.
+Our Reinforcement Learning (RL) framework utilizes a multi-objective reward system, integrating the following specialized models as objective reward functions:
 
----
-
-## Acknowledgements
-
-Many thanks to:
-
-- **stable-audio-tools** (by Stability AI): For providing an easy-to-use framework for audio generation, as well as the VAE module and weights.
-- **MMAudio**: For the implementation of the MM-DiT backbone in the audio domain.
-- **ThinkSound**: For the foundational CoT-based V2A generation framework that PrismAudio builds upon.
+* **Stable Audio Open VAE** (by **Stability AI**): Serves as the foundational latent space for audio generation and reconstruction. Licensed under the [Stability AI Community License](./third_party/LICENSE_StabilityAI.md). **Commercial use and redistribution require prior permission from Stability AI.**
+* **Semantic Reward Model (Microsoft CLAP)**: Based on [Microsoft CLAP](https://github.com/microsoft/CLAP), this model provides a semantic consistency reward by calculating the cosine similarity between generated audio embeddings and text prompt embeddings.
+* **Semantic Reward Model (LAION CLAP, optional)**: Based on [LAION-AI CLAP](https://github.com/LAION-AI/CLAP), used as an alternative or ensemble semantic scorer to reduce reward hacking during the RL process.
+* **Temporal Synchronization Reward (Synchformer)**: Based on [Synchformer](https://github.com/v-iashin/Synchformer), this model provides a synchronization reward, evaluating the rhythmic and temporal alignment between generated audio and visual/textual cues.
+* **Aesthetic & Quality Reward (Audiobox)**: Based on [Audiobox Aesthetics](https://github.com/facebookresearch/audiobox-aesthetics) (Meta AI), providing a perceptual quality reward to guide the agent toward generating high-fidelity and "aesthetically pleasing" audio.
+* **Spatial Consistency Reward (StereoCRW)**: Based on [StereoCRW](https://github.com/IFICL/stereocrw), specifically adapted for ITD (Interaural Time Difference) estimation to provide spatial rewards for binaural or stereo audio synthesis.
 
 ---
+
+## 🙏 Acknowledgements
+
+We sincerely thank the following research teams for open-sourcing their models and frameworks, which serve as critical reward signals in our RL pipeline:
+* **flow_grpo (by yifan123)**: For providing the high-performance post-training framework that enables efficient Group Relative Policy Optimization (GRPO).
+* **Stable Audio Tools (Stability AI)**: For the high-performance generative audio framework and the VAE module.
+* **Microsoft Research & LAION-AI**: For the CLAP models, enabling robust semantic rewards for cross-modal alignment.
+* **Vladimir Iashin and the Synchformer Team**: For providing a sophisticated method for temporal synchronization evaluation.
+* **Meta AI (Audiobox Aesthetics Team)**: For their work on quantifying audio aesthetics, essential for perceptual quality optimization.
+* **IFICL (StereoCRW Team)**: For the self-supervised spatial audio representations, which allow for precise spatial reward calculation.
 
 ## 📖 Citation
 
@@ -164,4 +169,4 @@ If you find PrismAudio useful in your research or work, please cite our paper:
 
 ## 📬 Contact
 
-✨ Feel free to [open an issue](https://github.com/liuhuadai/ThinkSound/issues) or contact us via email ([huadai.liu@connect.ust.hk](mailto:huadai.liu@connect.ust.hk)) if you have any questions or suggestions!
+✨ Feel free to [open an issue](https://github.com/liuhuadai/ThinkSound/issues)
