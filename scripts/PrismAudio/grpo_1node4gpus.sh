@@ -1,5 +1,4 @@
 
-
 export NCCL_IB_DISABLE=1
 export NCCL_IB_HCA=mlx5
 export NCCL_DEBUG=WARN

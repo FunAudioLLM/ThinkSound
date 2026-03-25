@@ -2,8 +2,8 @@
 # 变量定义
 ckpt_dir="ckpts/prismaudio.ckpt"
 test_batch_size=1
-dataset_config="ThinkSound/configs/multimodal_dataset_demo_prismaudio.json"
-model_config="ThinkSound/configs/model_configs/prismaudio.json"
+dataset_config="PrismAudio/configs/multimodal_dataset_demo_prismaudio.json"
+model_config="PrismAudio/configs/model_configs/prismaudio.json"
 pretransform_ckpt_path="ckpts/vae.ckpt"
 # 默认值
 debug_mode="true"

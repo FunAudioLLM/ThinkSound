@@ -17,7 +17,7 @@ VIDEO_PATH="$1"
 DESCRIPTION="$2"
 
 
-model_config="ThinkSound/configs/model_configs/prismaudio.json"
+model_config="PrismAudio/configs/model_configs/prismaudio.json"
 ckpt_dir="ckpts/prismaudio.ckpt"
 # Generate unique ID
 UNIQUE_ID=$(uuidgen | cut -c 1-8)
