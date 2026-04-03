@@ -95,3 +95,4 @@ rm -f "$TEMP_VIDEO_PATH"
 
 echo "✅ Audio generated successfully!"
 echo "Audio file path: $AUDIO_PATH"
+rm -f "results/demo.npz"
