@@ -1,7 +1,7 @@
 import os
 # ⭐ Must be set before importing gradio
 
-os.environ["JAX_PLATFORMS"] = "cpu" 
+# os.environ["JAX_PLATFORMS"] = "cpu" 
 import gradio as gr
 import logging
 import sys
